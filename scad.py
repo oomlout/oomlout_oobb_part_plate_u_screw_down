@@ -4,7 +4,7 @@ import oobb
 import oobb_base
 import yaml
 import os
-import scad_help
+from scad_help import *
 
 def main(**kwargs):
     make_scad(**kwargs)
@@ -20,19 +20,15 @@ def make_scad(**kwargs):
         typ = "fast"
         #typ = "manual"
 
-    oomp_mode = "project"
-    #oomp_mode = "oobb"
-
-    test = False
-    #test = True
+    #oomp_mode = "project"
+    oomp_mode = "oobb"
 
     if typ == "all":
-        filter = ""; save_type = "all"; navigation = True; overwrite = True; modes = ["3dpr"]; oomp_run = True; test = False
-        #default
-        #filter = ""; save_type = "all"; navigation = True; overwrite = True; modes = ["3dpr"]; oomp_run = True; test = False
+        #no overwrite
+        filter = ""; save_type = "all"; navigation = True; overwrite = False; modes = ["3dpr"]; oomp_run = True
+        #filter = ""; save_type = "all"; navigation = True; overwrite = True; modes = ["3dpr", "laser", "true"]
     elif typ == "fast":
-        filter = ""; save_type = "none"; navigation = False; overwrite = True; modes = ["3dpr"]; oomp_run = False
-        #default
+        filter = ""; save_type = "none"; navigation = True; overwrite = True; modes = ["3dpr"]; oomp_run = False
         #filter = ""; save_type = "none"; navigation = False; overwrite = True; modes = ["3dpr"]; oomp_run = False
     elif typ == "manual":
     #filter
@@ -79,14 +75,7 @@ def make_scad(**kwargs):
         directory_name = os.path.dirname(__file__) 
         directory_name = directory_name.replace("/", "\\")
         project_name = directory_name.split("\\")[-1]
-        #max 60 characters
-        length_max = 40
-        if len(project_name) > length_max:
-            project_name = project_name[:length_max]
-            #if ends with a _ remove it 
-            if project_name[-1] == "_":
-                project_name = project_name[:-1]
-                
+
         #defaults
         kwargs["size"] = "oobb"
         kwargs["width"] = 1
@@ -105,7 +94,7 @@ def make_scad(**kwargs):
         elif oomp_mode == "oobb":
             kwargs["oomp_classification"] = "oobb"
             kwargs["oomp_type"] = "part"
-            kwargs["oomp_size"] = ""
+            kwargs["oomp_size"] = "plate_screw_down"
             kwargs["oomp_color"] = ""
             kwargs["oomp_description_main"] = ""
             kwargs["oomp_description_extra"] = ""
@@ -118,25 +107,67 @@ def make_scad(**kwargs):
         part_default["full_shift"] = [0, 0, 0]
         part_default["full_rotations"] = [0, 0, 0]
         
-        part = copy.deepcopy(part_default)
-        p3 = copy.deepcopy(kwargs)
-        p3["width"] = 3
-        p3["height"] = 3
-        #p3["thickness"] = 6
-        #p3["extra"] = ""
-        part["kwargs"] = p3
-        nam = "base"
-        part["name"] = nam
-        if oomp_mode == "oobb":
-            p3["oomp_size"] = nam
-        if not test:
-            pass
-            #parts.append(part)
+        #bolt_extras = ["", "bolt_recess"]
+        bolt_extras = [""]
+        
+        screw_radiuses = ["m3_screw_wood", "m4_screw_wood", "m5_screw_wood"]
+        #screw_radiuses = ["m3_screw_wood"]
+        
+        
+        join_styles = [""]
+        
+        sizes = []
+        
+        
+
+
+        sizes.append({"width": 5, "height": 2})
+        sizes.append({"width": 5, "height": 3})
+        sizes.append({"width": 5, "height": 5})       
+        sizes.append({"width": 3, "height": 3})       
+        sizes.append({"width": 3, "height": 5})        
+        sizes.append({"width": 2, "height": 5})
+
+
+        thicknesses = [14]
+
+        for bolt_extra in bolt_extras:
+            for screw_radius in screw_radiuses:
+                for join_style in join_styles:
+                    for thickness in thicknesses:
+                        for size in sizes:
+                            wid = size["width"]
+                            hei = size["height"]
+                            part = copy.deepcopy(part_default)
+                            p3 = copy.deepcopy(kwargs)
+                            p3["width"] = wid
+                            p3["height"] = hei
+                            p3["thickness"] = thickness
+                            p3["bolt_extra"] = bolt_extra
+                            p3["screw_radius"] = screw_radius
+                            p3["extra"] = ""
+                            if join_style != "":
+                                p3["join_style"] = join_style
+                                p3["extra"] = f"{p3["join_style"]}_join_style_{p3["screw_radius"]}"
+                            if p3["bolt_extra"] != "":
+                                p3["extra"] += f"_{p3["bolt_extra"]}"
+                            part["kwargs"] = p3
+                            nam = "plate_screw_down_u"
+                            part["name"] = nam
+                            if oomp_mode == "oobb":
+                                p3["oomp_size"] = nam
+                            if "bolt_recess" in bolt_extra:
+                                if thickness < 8:
+                                    pass
+                                else:
+                                    parts.append(part)
+                            else:
+                                parts.append(part)
 
 
     kwargs["parts"] = parts
 
-    scad_help.make_parts(**kwargs)
+    make_parts(**kwargs)
 
     #generate navigation
     if navigation:
@@ -146,8 +177,12 @@ def make_scad(**kwargs):
         sort.append("width")
         sort.append("height")
         sort.append("thickness")
+        sort.append("join_style")
+        sort.append("bolt_extra")
+        sort.append("screw_radius")
         
-        scad_help.generate_navigation(sort = sort)
+        
+        generate_navigation(sort = sort)
 
 
 def get_base(thing, **kwargs):
@@ -158,31 +193,308 @@ def get_base(thing, **kwargs):
     depth = kwargs.get("thickness", 3)                    
     rot = kwargs.get("rot", [0, 0, 0])
     pos = kwargs.get("pos", [0, 0, 0])
-    extra = kwargs.get("extra", "")
-    
-    #add plate
+    extra = kwargs.get("extra", "")    
+    bolt_extra = kwargs.get("bolt_extra", "")
+    screw_radius = kwargs.get("screw_radius", "")
+    join_style = kwargs.get("join_style", "")
+
+    #add u
     if True:
+        #little side
         p3 = copy.deepcopy(kwargs)
         p3["type"] = "positive"
         p3["shape"] = f"oobb_plate"    
+        p3["width"] = 1
+        p3["height"] = height
         p3["depth"] = depth
         #p3["holes"] = True         uncomment to include default holes
         #p3["m"] = "#"
         pos1 = copy.deepcopy(pos)         
+        pos1[0] += (width-1)/2 * 15
         p3["pos"] = pos1
         oobb_base.append_full(thing,**p3)
-        
+    
         #add holes seperate
-        p3 = copy.deepcopy(kwargs)
+        p3 = copy.deepcopy(p3)
         p3["type"] = "p"
         p3["shape"] = f"oobb_holes"
         p3["both_holes"] = True  
         p3["depth"] = depth
-        p3["holes"] = "perimeter"
+        #p3["holes"] = "perimeter"
+        #p3["m"] = "#"
+        oobb_base.append_full(thing,**p3)
+
+        #big side
+        p3 = copy.deepcopy(kwargs)
+        p3["type"] = "positive"
+        p3["shape"] = f"oobb_plate"    
+        p3["width"] = 1 
+        p3["height"] = height + 2
+        p3["depth"] = depth
+        #p3["holes"] = True         uncomment to include default holes
         #p3["m"] = "#"
         pos1 = copy.deepcopy(pos)         
+        pos1[0] += -(width-1)/2 * 15
         p3["pos"] = pos1
         oobb_base.append_full(thing,**p3)
+    
+        #add holes seperate
+        p3 = copy.deepcopy(p3)
+        p3["type"] = "p"
+        p3["shape"] = f"oobb_holes"
+        p3["both_holes"] = True  
+        p3["height"] += -2
+        p3["depth"] = depth
+        oobb_base.append_full(thing,**p3)
+
+        #bottom piece
+        p3 = copy.deepcopy(kwargs)
+        p3["type"] = "positive"
+        p3["shape"] = f"oobb_plate"    
+        p3["width"] = width
+        p3["height"] = 1
+        p3["depth"] = depth
+        #p3["holes"] = True         uncomment to include default holes
+        #p3["m"] = "#"
+        pos1 = copy.deepcopy(pos)    
+        pos1[1] += -(height-1)/2 * 15     
+        p3["pos"] = pos1
+        oobb_base.append_full(thing,**p3)
+    
+        #add holes seperate
+        p3 = copy.deepcopy(p3)
+        p3["type"] = "p"
+        p3["shape"] = f"oobb_holes"
+        p3["both_holes"] = True  
+        p3["depth"] = depth
+        #p3["holes"] = "perimeter"
+        #p3["m"] = "#"
+        oobb_base.append_full(thing,**p3)
+
+
+
+    shift_x = (width-1)/2 * 15
+    shift_y = (height-1)/2 * 15
+    #add extra beam and srew downs
+    if True:
+        if "top" in join_style:
+            #add piece for the screwdown
+            p3 = copy.deepcopy(kwargs)
+            p3["type"] = "positive"
+            p3["shape"] = f"oobb_plate"
+            p3["width"] = 1
+            p3["height"] = 2
+            p3["depth"] = depth
+
+            pos1 = copy.deepcopy(pos)
+            pos1[1] += (height-1) * 15 / 2 + 7.5
+            poss = []
+            pos11 = copy.deepcopy(pos1)
+            pos11[0] += (width-1)/2 * 15    
+            pos12 = copy.deepcopy(pos11)
+            pos12[0] += -(width-1) * 15
+            poss.append(pos11)
+            poss.append(pos12)
+            p3["pos"] = poss
+            oobb_base.append_full(thing,**p3)
+            #add screws
+            p3 = copy.deepcopy(kwargs)
+            p3["type"] = "negative"
+            p3["shape"] = f"oobb_screw_countersunk"
+            p3["radius_name"] = screw_radius
+            p3["depth"] = depth
+            p3["holes"] = "perimeter"
+            p3["m"] = "#"
+            pos1 = copy.deepcopy(pos)
+            pos1[1] += (height-1) * 15 / 2 + 15
+            pos1[2] += depth
+            poss = []
+            pos11 = copy.deepcopy(pos1)
+            pos11[0] += shift_x
+            pos12 = copy.deepcopy(pos1)
+            pos12[0] += -shift_x
+            poss.append(pos11)
+            poss.append(pos12)
+            p3["pos"] = poss
+            oobb_base.append_full(thing,**p3)
+        if "bottom" in join_style:
+            #add piece for the screwdown
+            p3 = copy.deepcopy(kwargs)
+            p3["type"] = "positive"
+            p3["shape"] = f"oobb_plate"
+            p3["width"] = 1
+            p3["height"] = 2
+            p3["depth"] = depth
+
+            pos1 = copy.deepcopy(pos)
+            pos1[1] += -(height-1) * 15 / 2 - 7.5
+            poss = []
+            pos11 = copy.deepcopy(pos1)
+            pos11[0] += (width-1)/2 * 15    
+            pos12 = copy.deepcopy(pos11)
+            pos12[0] += -(width-1) * 15
+            poss.append(pos11)
+            poss.append(pos12)
+            p3["pos"] = poss
+            oobb_base.append_full(thing,**p3)
+            #add screws
+            p3 = copy.deepcopy(kwargs)
+            p3["type"] = "negative"
+            p3["shape"] = f"oobb_screw_countersunk"
+            p3["radius_name"] = screw_radius
+            p3["depth"] = depth
+            p3["holes"] = "perimeter"
+            p3["m"] = "#"
+            pos1 = copy.deepcopy(pos)
+            pos1[1] += -(height-1) * 15 / 2 - 15    
+            pos1[2] += depth
+            poss = []
+            
+            pos11 = copy.deepcopy(pos1)
+            pos11[0] += shift_x
+            pos12 = copy.deepcopy(pos1)
+            pos12[0] += -shift_x
+            poss.append(pos11)
+            poss.append(pos12)
+            p3["pos"] = poss
+            oobb_base.append_full(thing,**p3)
+        if "left" in join_style:
+            #add piece for the screwdown
+            p3 = copy.deepcopy(kwargs)
+            p3["type"] = "positive"
+            p3["shape"] = f"oobb_plate"
+            p3["width"] = 2
+            p3["height"] = 1
+            p3["depth"] = depth
+
+            pos1 = copy.deepcopy(pos)
+            pos1[0] += -(width-1) * 15 / 2 - 7.5
+            poss = []
+            pos11 = copy.deepcopy(pos1)
+            pos11[1] += (height-1)/2 * 15    
+            pos12 = copy.deepcopy(pos11)
+            pos12[1] += -(height-1) * 15
+            poss.append(pos11)
+            poss.append(pos12)
+            p3["pos"] = poss
+            oobb_base.append_full(thing,**p3)
+            #add screws
+            p3 = copy.deepcopy(kwargs)
+            p3["type"] = "negative"
+            p3["shape"] = f"oobb_screw_countersunk"
+            p3["radius_name"] = screw_radius
+            p3["depth"] = depth
+            p3["holes"] = "perimeter"
+            p3["m"] = "#"
+            pos1 = copy.deepcopy(pos)
+            pos1[1] += -(width-1) * 15 / 2 - 15    
+            pos1[2] += depth
+            poss = []
+            pos11 = copy.deepcopy(pos1)
+            pos11[1] += shift_y
+            pos12 = copy.deepcopy(pos1)
+            pos12[1] += -shift_y
+            poss.append(pos11)
+            poss.append(pos12)
+            p3["pos"] = poss
+            oobb_base.append_full(thing,**p3)
+        if "right" in join_style:
+            #add piece for the screwdown
+            p3 = copy.deepcopy(kwargs)
+            p3["type"] = "positive"
+            p3["shape"] = f"oobb_plate"
+            p3["width"] = 2
+            p3["height"] = 1
+            p3["depth"] = depth
+
+            pos1 = copy.deepcopy(pos)
+            pos1[0] += (width-1) * 15 / 2 + 7.5
+            poss = []
+            pos11 = copy.deepcopy(pos1)
+            pos11[1] += (height-1)/2 * 15    
+            pos12 = copy.deepcopy(pos11)
+            pos12[1] += -(height-1) * 15
+            poss.append(pos11)
+            poss.append(pos12)
+            p3["pos"] = poss
+            oobb_base.append_full(thing,**p3)
+            #add screws
+            p3 = copy.deepcopy(kwargs)
+            p3["type"] = "negative"
+            p3["shape"] = f"oobb_screw_countersunk"
+            p3["radius_name"] = screw_radius
+            p3["depth"] = depth
+            p3["holes"] = "perimeter"
+            p3["m"] = "#"
+            pos1 = copy.deepcopy(pos)
+            pos1[0] += (width-1) * 15 / 2 + 15    
+            pos1[2] += depth
+            poss = []
+            pos11 = copy.deepcopy(pos1)
+            pos11[1] += shift_y
+            pos12 = copy.deepcopy(pos1)
+            pos12[1] += -shift_y
+            poss.append(pos11)
+            poss.append(pos12)
+            p3["pos"] = poss
+            oobb_base.append_full(thing,**p3)
+        #if "ninety_degree" in join_style:
+        if join_style == "":
+            
+            if True:
+                p3 = copy.deepcopy(kwargs)
+                p3["type"] = "negative"
+                p3["shape"] = f"oobb_screw_countersunk"
+                p3["radius_name"] = screw_radius
+                p3["depth"] = 14
+                p3["holes"] = "perimeter"
+                p3["m"] = "#"
+                pos1 = copy.deepcopy(pos)
+                  
+                pos1[1] += 0
+                pos1[2] += depth/2
+                poss = []
+                pos11 = copy.deepcopy(pos1)
+                pos11[0] += -shift_x + depth / 2
+                pos11[1] += -(height-1) * 15 / 2 - 15  
+                pos12 = copy.deepcopy(pos1)
+                pos12[0] += -shift_x + depth / 2
+                pos12[1] += (height-1) * 15 / 2 + 15  
+                poss.append(pos11)
+                poss.append(pos12)
+                p3["pos"] = poss
+                rot1 = copy.deepcopy(rot)
+                rot1[1] += 90
+                p3["rot"] = rot1
+                oobb_base.append_full(thing,**p3)
+
+
+    
+
+    if bolt_extra == "bolt_recess":
+        #add bolt head clearance
+        p3 = copy.deepcopy(kwargs)
+        p3["type"] = "negative"
+        p3["shape"] = f"oobb_nut"
+        p3["radius_name"] = "m6"   
+        p3["overhang"] = True   
+        p3["hole"] = True        
+        p3["m"] = "#"
+        pos1 = copy.deepcopy(pos)        
+        pos1[2] += 0
+        poss = []
+        #add a position for every odd row in an odd column, and every even row in an even column
+        for i in range(0, width):
+            for j in range(0, height):
+                if (i % 2 == 0 and j % 2 == 0) or (i % 2 == 1 and j % 2 == 1):
+                    pos11 = copy.deepcopy(pos1)
+                    pos11[0] += (i - (width-1)/2) * 15
+                    pos11[1] += (j - (height-1)/2) * 15
+                    poss.append(pos11)
+        p3["pos"] = poss
+        oobb_base.append_full(thing,**p3)
+        
+
 
     if prepare_print:
         #put into a rotation object

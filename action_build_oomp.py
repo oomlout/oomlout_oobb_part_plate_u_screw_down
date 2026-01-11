@@ -1,11 +1,7 @@
 import os
-import copy
+
 
 def main(**kwargs):
-
-    commit_to_git = False
-    #commit_to_git = True
-
     #clone or pull oomlout_oompbuilder into temporary/oomlout_oomp_builder
     repo_url = "https://github.com/oomlout/oomlout_oomp_builder"
     repo_dir = "temporary\\oomlout_oomp_builder"
@@ -33,21 +29,10 @@ def main(**kwargs):
     import run
     run.main(**kwargs)
 
-    if commit_to_git:
-        os.system("git add .")
-        os.system('git commit -m "Build OOMP parts using oomlout_oomp_builder"')
-        os.system("git push")
+
 
 
 
 if __name__ == '__main__':
-    #add args parse and add a filter -f option
-    import argparse
-    parser = argparse.ArgumentParser(description="Build OOMP parts using oomlout_oomp_builder.")
-    parser.add_argument('-f', '--filter', default="", type=str, help="Filter for the build process.")
-    args = parser.parse_args()
-    #convert args to kwargs
-    kwargs = copy.deepcopy(vars(args))
-    print(f"kwargs: {kwargs}")
-    #kwargs = {}
+    kwargs = {}
     main(**kwargs)
