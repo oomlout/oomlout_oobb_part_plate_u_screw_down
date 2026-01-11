@@ -120,14 +120,11 @@ def make_scad(**kwargs):
         
         
 
-
-        sizes.append({"width": 5, "height": 2})
-        sizes.append({"width": 5, "height": 3})
-        sizes.append({"width": 5, "height": 5})       
-        sizes.append({"width": 3, "height": 3})       
-        sizes.append({"width": 3, "height": 5})        
-        sizes.append({"width": 2, "height": 5})
-
+        #add al combinations between 2 and 5
+        for i in range(2,6):
+            for j in range(2,6):
+                if {"width": i, "height": j} not in sizes:
+                    sizes.append({"width": i, "height": j})
 
         thicknesses = [14]
 
@@ -148,9 +145,9 @@ def make_scad(**kwargs):
                             p3["extra"] = ""
                             if join_style != "":
                                 p3["join_style"] = join_style
-                                p3["extra"] = f"{p3["join_style"]}_join_style_{p3["screw_radius"]}"
-                            if p3["bolt_extra"] != "":
-                                p3["extra"] += f"_{p3["bolt_extra"]}"
+                                p3["extra"] = f"{p3["join_style"]}_join_style"
+                            if screw_radius != "":
+                                p3["extra"] += f"_{p3["screw_radius"]}"
                             part["kwargs"] = p3
                             nam = "plate_screw_down_u"
                             part["name"] = nam
@@ -178,7 +175,6 @@ def make_scad(**kwargs):
         sort.append("height")
         sort.append("thickness")
         sort.append("join_style")
-        sort.append("bolt_extra")
         sort.append("screw_radius")
         
         
