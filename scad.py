@@ -110,8 +110,8 @@ def make_scad(**kwargs):
         #bolt_extras = ["", "bolt_recess"]
         bolt_extras = [""]
         
-        screw_radiuses = ["m3_screw_wood", "m4_screw_wood", "m5_screw_wood"]
-        #screw_radiuses = ["m3_screw_wood"]
+        screw_radiuses = ["m3_screw_wood", "m4_screw_wood", "m5_screw_wood","m6_bolt"]
+        #screw_radiuses = ["m6_bolt"]
         
         
         join_styles = [""]
@@ -192,6 +192,11 @@ def get_base(thing, **kwargs):
     extra = kwargs.get("extra", "")    
     bolt_extra = kwargs.get("bolt_extra", "")
     screw_radius = kwargs.get("screw_radius", "")
+    mode = "oobb_screw_countersunk"
+    if "bolt" in screw_radius:
+        mode = "oobb_hole"
+        screw_radius = "m6"
+
     join_style = kwargs.get("join_style", "")
 
     #add u
@@ -334,26 +339,28 @@ def get_base(thing, **kwargs):
             p3["pos"] = poss
             oobb_base.append_full(thing,**p3)
             #add screws
-            p3 = copy.deepcopy(kwargs)
-            p3["type"] = "negative"
-            p3["shape"] = f"oobb_screw_countersunk"
-            p3["radius_name"] = screw_radius
-            p3["depth"] = depth
-            p3["holes"] = "perimeter"
-            p3["m"] = "#"
-            pos1 = copy.deepcopy(pos)
-            pos1[1] += -(height-1) * 15 / 2 - 15    
-            pos1[2] += depth
-            poss = []
-            
-            pos11 = copy.deepcopy(pos1)
-            pos11[0] += shift_x
-            pos12 = copy.deepcopy(pos1)
-            pos12[0] += -shift_x
-            poss.append(pos11)
-            poss.append(pos12)
-            p3["pos"] = poss
-            oobb_base.append_full(thing,**p3)
+            if True:                
+                p3 = copy.deepcopy(kwargs)
+                p3["type"] = "negative"
+                #p3["shape"] = f"oobb_screw_countersunk"
+                p3["shape"] = mode
+                p3["radius_name"] = screw_radius
+                p3["depth"] = depth
+                p3["holes"] = "perimeter"
+                p3["m"] = "#"
+                pos1 = copy.deepcopy(pos)
+                pos1[1] += -(height-1) * 15 / 2 - 15    
+                pos1[2] += depth
+                poss = []
+                
+                pos11 = copy.deepcopy(pos1)
+                pos11[0] += shift_x
+                pos12 = copy.deepcopy(pos1)
+                pos12[0] += -shift_x
+                poss.append(pos11)
+                poss.append(pos12)
+                p3["pos"] = poss
+                oobb_base.append_full(thing,**p3)
         if "left" in join_style:
             #add piece for the screwdown
             p3 = copy.deepcopy(kwargs)
@@ -377,7 +384,8 @@ def get_base(thing, **kwargs):
             #add screws
             p3 = copy.deepcopy(kwargs)
             p3["type"] = "negative"
-            p3["shape"] = f"oobb_screw_countersunk"
+            #p3["shape"] = f"oobb_screw_countersunk"
+            p3["shape"] = mode
             p3["radius_name"] = screw_radius
             p3["depth"] = depth
             p3["holes"] = "perimeter"
@@ -417,7 +425,8 @@ def get_base(thing, **kwargs):
             #add screws
             p3 = copy.deepcopy(kwargs)
             p3["type"] = "negative"
-            p3["shape"] = f"oobb_screw_countersunk"
+            #p3["shape"] = f"oobb_screw_countersunk"
+            p3["shape"] = mode
             p3["radius_name"] = screw_radius
             p3["depth"] = depth
             p3["holes"] = "perimeter"
@@ -440,14 +449,17 @@ def get_base(thing, **kwargs):
             if True:
                 p3 = copy.deepcopy(kwargs)
                 p3["type"] = "negative"
-                p3["shape"] = f"oobb_screw_countersunk"
+                #p3["shape"] = f"oobb_screw_countersunk"
+                p3["shape"] = mode
                 p3["radius_name"] = screw_radius
                 p3["depth"] = 14
                 p3["holes"] = "perimeter"
                 p3["m"] = "#"
                 pos1 = copy.deepcopy(pos)
-                  
+                if mode == "oobb_hole":
+                    pos1[0] += -depth  
                 pos1[1] += 0
+                
                 pos1[2] += depth/2
                 poss = []
                 pos11 = copy.deepcopy(pos1)
