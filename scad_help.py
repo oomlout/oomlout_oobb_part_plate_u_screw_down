@@ -24,7 +24,7 @@ def make_parts(**kwargs):
 
     #run oomp
     oomp_run = kwargs.get("oomp_run", False)
-    if kwargs.get("oomp_run", False):
+    if False:
         import action_build_oomp
         action_build_oomp.main()
 
@@ -78,7 +78,7 @@ def make_scad_generic(part):
             descextra = f"{descextra}_extra"
         kwargs["oomp_description_main"] = f"{current_description_main}"
         kwargs["oomp_description_extra"] = f"{descextra}"
-        kwargs["oomp_size"] = f"{part["name"]}"
+        kwargs["oomp_size"] = f'{part["name"]}'
 
     #move oomp bits from kwargs to part
     oomp_keys = ["classification", "type", "size", "color", "description_main", "description_extra", "manufacturer", "part_number"]

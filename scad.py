@@ -121,8 +121,8 @@ def make_scad(**kwargs):
         
 
         #add al combinations between 2 and 5
-        for i in range(2,6):
-            for j in range(2,6):
+        for i in range(2,9):
+            for j in range(2,9):
                 if {"width": i, "height": j} not in sizes:
                     sizes.append({"width": i, "height": j})
 
@@ -145,9 +145,9 @@ def make_scad(**kwargs):
                             p3["extra"] = ""
                             if join_style != "":
                                 p3["join_style"] = join_style
-                                p3["extra"] = f"{p3["join_style"]}_join_style"
+                                p3["extra"] = f'{p3["join_style"]}_join_style'
                             if screw_radius != "":
-                                p3["extra"] += f"_{p3["screw_radius"]}"
+                                p3["extra"] += f'_{p3["screw_radius"]}'
                             part["kwargs"] = p3
                             nam = "plate_screw_down_u"
                             part["name"] = nam
