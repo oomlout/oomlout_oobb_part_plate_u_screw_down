@@ -612,7 +612,7 @@ thing:
           height: 3
           inclusion: laser
           m: '#'
-          pos: &id001
+          pos:
           - 0
           - 0
           - -14.0
@@ -627,7 +627,10 @@ thing:
           height: 3
           inclusion: 3dpr
           m: '#'
-          pos: *id001
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.6
           shape: cylinder
           type: positive
@@ -638,7 +641,10 @@ thing:
           height: 3
           inclusion: 'true'
           m: '#'
-          pos: *id001
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.6
           radius: 2.6
           shape: cylinder
@@ -665,7 +671,7 @@ thing:
           height: 3
           inclusion: laser
           m: '#'
-          pos: &id002
+          pos:
           - 0
           - 0
           - -14.0
@@ -680,7 +686,10 @@ thing:
           height: 3
           inclusion: 3dpr
           m: '#'
-          pos: *id002
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.875
           shape: cylinder
           type: positive
@@ -691,7 +700,10 @@ thing:
           height: 3
           inclusion: 'true'
           m: '#'
-          pos: *id002
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.875
           radius: 2.875
           shape: cylinder
@@ -718,7 +730,7 @@ thing:
           height: 3
           inclusion: laser
           m: '#'
-          pos: &id003
+          pos:
           - 0
           - 0
           - -14.0
@@ -733,7 +745,10 @@ thing:
           height: 3
           inclusion: 3dpr
           m: '#'
-          pos: *id003
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.6
           shape: cylinder
           type: positive
@@ -744,7 +759,10 @@ thing:
           height: 3
           inclusion: 'true'
           m: '#'
-          pos: *id003
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.6
           radius: 2.6
           shape: cylinder
@@ -782,7 +800,7 @@ thing:
           height: 3
           inclusion: laser
           m: '#'
-          pos: &id004
+          pos:
           - 0
           - 0
           - -14.0
@@ -797,7 +815,10 @@ thing:
           height: 3
           inclusion: 3dpr
           m: '#'
-          pos: *id004
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.6
           shape: cylinder
           type: positive
@@ -808,7 +829,10 @@ thing:
           height: 3
           inclusion: 'true'
           m: '#'
-          pos: *id004
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.6
           radius: 2.6
           shape: cylinder
@@ -835,7 +859,7 @@ thing:
           height: 3
           inclusion: laser
           m: '#'
-          pos: &id005
+          pos:
           - 0
           - 0
           - -14.0
@@ -850,7 +874,10 @@ thing:
           height: 3
           inclusion: 3dpr
           m: '#'
-          pos: *id005
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.875
           shape: cylinder
           type: positive
@@ -861,7 +888,10 @@ thing:
           height: 3
           inclusion: 'true'
           m: '#'
-          pos: *id005
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.875
           radius: 2.875
           shape: cylinder
@@ -888,7 +918,7 @@ thing:
           height: 3
           inclusion: laser
           m: '#'
-          pos: &id006
+          pos:
           - 0
           - 0
           - -14.0
@@ -903,7 +933,10 @@ thing:
           height: 3
           inclusion: 3dpr
           m: '#'
-          pos: *id006
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.6
           shape: cylinder
           type: positive
@@ -914,7 +947,10 @@ thing:
           height: 3
           inclusion: 'true'
           m: '#'
-          pos: *id006
+          pos:
+          - 0
+          - 0
+          - -14.0
           r: 2.6
           radius: 2.6
           shape: cylinder
@@ -1193,16 +1229,15 @@ thing:
   description_extra: _m4_screw_wood_extra
   description_main: 2_width_3_height_14_mm_depth
   extra: _m4_screw_wood
-  folder: C:\gh\oomlout_oobb_version_4_generated_parts\parts\oobb_part_oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u_2_width_3_height_14_mm_depth__m4_screw_wood_extra
   height: 3
   height_mm: 44
   id: oobb_part_oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u_2_width_3_height_14_mm_depth__m4_screw_wood_extra
   link_main: https://github.com/oomlout/oomlout_oobb_version_4_generated_parts/tree/main/navigation_oomp/oobb/part/oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u/2_width_3_height_14_mm_depth/_m4_screw_wood_extra/part
   link_redirect: https://github.com/oomlout/oomlout_oobb_version_4_generated_parts/tree/main/parts/oobb_oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u_02_03_14_ex__m4_screw_wood
   manufacturer: ''
-  name: Oobb Part Oomlout Oobb Part Plate U Screw Down Plate Screw Down U 2 Width
-    3 Height 14 mm Depth  M4 Screw Wood Extra
   name_short: Oomlout Plate U Screw Down Plate Screw
+  name_text: Oobb Part Oomlout Oobb Part Plate U Screw Down Plate Screw Down U 2 Width
+    3 Height 14 mm Depth  M4 Screw Wood Extra
   part_number: ''
   short_name: ''
   size: oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u

@@ -27,13 +27,12 @@ kwargs:
   oomp_manufacturer: ''
   oomp_mode: oobb
   oomp_part_number: ''
-  oomp_run: true
+  oomp_run: false
   oomp_size: plate_screw_down_u
   oomp_type: part
-  overwrite: false
+  overwrite: true
   screw_radius: m6_bolt
   thickness: 14
-  typ: all
   type: oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u
   width: 4
 manufacturer: ''
@@ -885,12 +884,12 @@ thing:
       height: 4
       inclusion: laser
       m: '#'
-      pos: &id001
+      pos:
       - -29.5
       - -37.5
       - 7.0
       r: 3.0
-      rot: &id002
+      rot:
       - 0
       - 90
       - 0
@@ -903,9 +902,15 @@ thing:
       height: 4
       inclusion: 3dpr
       m: '#'
-      pos: *id001
+      pos:
+      - -29.5
+      - -37.5
+      - 7.0
       r: 3.25
-      rot: *id002
+      rot:
+      - 0
+      - 90
+      - 0
       shape: cylinder
       type: negative
       width: 4
@@ -915,9 +920,15 @@ thing:
       height: 4
       inclusion: 'true'
       m: '#'
-      pos: *id001
+      pos:
+      - -29.5
+      - -37.5
+      - 7.0
       r: 3.0
-      rot: *id002
+      rot:
+      - 0
+      - 90
+      - 0
       shape: cylinder
       type: negative
       width: 4
@@ -927,12 +938,12 @@ thing:
       height: 4
       inclusion: laser
       m: '#'
-      pos: &id003
+      pos:
       - -29.5
       - 37.5
       - 7.0
       r: 3.0
-      rot: &id004
+      rot:
       - 0
       - 90
       - 0
@@ -945,9 +956,15 @@ thing:
       height: 4
       inclusion: 3dpr
       m: '#'
-      pos: *id003
+      pos:
+      - -29.5
+      - 37.5
+      - 7.0
       r: 3.25
-      rot: *id004
+      rot:
+      - 0
+      - 90
+      - 0
       shape: cylinder
       type: negative
       width: 4
@@ -957,9 +974,15 @@ thing:
       height: 4
       inclusion: 'true'
       m: '#'
-      pos: *id003
+      pos:
+      - -29.5
+      - 37.5
+      - 7.0
       r: 3.0
-      rot: *id004
+      rot:
+      - 0
+      - 90
+      - 0
       shape: cylinder
       type: negative
       width: 4
@@ -979,19 +1002,18 @@ thing:
     oomp_manufacturer: ''
     oomp_mode: oobb
     oomp_part_number: ''
-    oomp_run: true
+    oomp_run: false
     oomp_size: plate_screw_down_u
     oomp_type: part
-    overwrite: false
+    overwrite: true
     pos:
     - 22.5
     - 0
     - 0
-    save_type: all
+    save_type: none
     screw_radius: m6_bolt
     shape: oobb_plate
     thickness: 14
-    typ: all
     type: positive
     width: 1
   - bolt_extra: ''
@@ -1010,19 +1032,18 @@ thing:
     oomp_manufacturer: ''
     oomp_mode: oobb
     oomp_part_number: ''
-    oomp_run: true
+    oomp_run: false
     oomp_size: plate_screw_down_u
     oomp_type: part
-    overwrite: false
+    overwrite: true
     pos:
     - 22.5
     - 0
     - 0
-    save_type: all
+    save_type: none
     screw_radius: m6_bolt
     shape: oobb_holes
     thickness: 14
-    typ: all
     type: p
     width: 1
   - bolt_extra: ''
@@ -1040,19 +1061,18 @@ thing:
     oomp_manufacturer: ''
     oomp_mode: oobb
     oomp_part_number: ''
-    oomp_run: true
+    oomp_run: false
     oomp_size: plate_screw_down_u
     oomp_type: part
-    overwrite: false
+    overwrite: true
     pos:
     - -22.5
     - 0
     - 0
-    save_type: all
+    save_type: none
     screw_radius: m6_bolt
     shape: oobb_plate
     thickness: 14
-    typ: all
     type: positive
     width: 1
   - bolt_extra: ''
@@ -1071,19 +1091,18 @@ thing:
     oomp_manufacturer: ''
     oomp_mode: oobb
     oomp_part_number: ''
-    oomp_run: true
+    oomp_run: false
     oomp_size: plate_screw_down_u
     oomp_type: part
-    overwrite: false
+    overwrite: true
     pos:
     - -22.5
     - 0
     - 0
-    save_type: all
+    save_type: none
     screw_radius: m6_bolt
     shape: oobb_holes
     thickness: 14
-    typ: all
     type: p
     width: 1
   - bolt_extra: ''
@@ -1101,19 +1120,18 @@ thing:
     oomp_manufacturer: ''
     oomp_mode: oobb
     oomp_part_number: ''
-    oomp_run: true
+    oomp_run: false
     oomp_size: plate_screw_down_u
     oomp_type: part
-    overwrite: false
+    overwrite: true
     pos:
     - 0
     - -22.5
     - 0
-    save_type: all
+    save_type: none
     screw_radius: m6_bolt
     shape: oobb_plate
     thickness: 14
-    typ: all
     type: positive
     width: 4
   - bolt_extra: ''
@@ -1132,19 +1150,18 @@ thing:
     oomp_manufacturer: ''
     oomp_mode: oobb
     oomp_part_number: ''
-    oomp_run: true
+    oomp_run: false
     oomp_size: plate_screw_down_u
     oomp_type: part
-    overwrite: false
+    overwrite: true
     pos:
     - 0
     - -22.5
     - 0
-    save_type: all
+    save_type: none
     screw_radius: m6_bolt
     shape: oobb_holes
     thickness: 14
-    typ: all
     type: p
     width: 4
   - bolt_extra: ''
@@ -1164,10 +1181,10 @@ thing:
     oomp_manufacturer: ''
     oomp_mode: oobb
     oomp_part_number: ''
-    oomp_run: true
+    oomp_run: false
     oomp_size: plate_screw_down_u
     oomp_type: part
-    overwrite: false
+    overwrite: true
     pos:
     - -29.5
     - -37.5
@@ -1177,11 +1194,10 @@ thing:
     - 0
     - 90
     - 0
-    save_type: all
+    save_type: none
     screw_radius: m6_bolt
     shape: oobb_hole
     thickness: 14
-    typ: all
     type: negative
     width: 4
   - bolt_extra: ''
@@ -1201,10 +1217,10 @@ thing:
     oomp_manufacturer: ''
     oomp_mode: oobb
     oomp_part_number: ''
-    oomp_run: true
+    oomp_run: false
     oomp_size: plate_screw_down_u
     oomp_type: part
-    overwrite: false
+    overwrite: true
     pos:
     - -29.5
     - 37.5
@@ -1214,36 +1230,34 @@ thing:
     - 0
     - 90
     - 0
-    save_type: all
+    save_type: none
     screw_radius: m6_bolt
     shape: oobb_hole
     thickness: 14
-    typ: all
     type: negative
     width: 4
   components_string:
-  - oobb_plate_shape_positive_type_14_depth_22.5_0_0_pos_all_typ_all_save_type_true_navigation_false_overwrite_'3dpr'_modes_oobb_oomp_mode_true_oomp_run_1_width_4_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra
-  - oobb_holes_shape_p_type_14_depth_22.5_0_0_pos_all_typ_all_save_type_true_navigation_false_overwrite_'3dpr'_modes_oobb_oomp_mode_true_oomp_run_1_width_4_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra_true_both_holes
-  - oobb_plate_shape_positive_type_14_depth_-22.5_0_0_pos_all_typ_all_save_type_true_navigation_false_overwrite_'3dpr'_modes_oobb_oomp_mode_true_oomp_run_1_width_6_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra
-  - oobb_holes_shape_p_type_14_depth_-22.5_0_0_pos_all_typ_all_save_type_true_navigation_false_overwrite_'3dpr'_modes_oobb_oomp_mode_true_oomp_run_1_width_4_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra_true_both_holes
-  - oobb_plate_shape_positive_type_14_depth_0_-22.5_0_pos_all_typ_all_save_type_true_navigation_false_overwrite_'3dpr'_modes_oobb_oomp_mode_true_oomp_run_4_width_1_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra
-  - oobb_holes_shape_p_type_14_depth_0_-22.5_0_pos_all_typ_all_save_type_true_navigation_false_overwrite_'3dpr'_modes_oobb_oomp_mode_true_oomp_run_4_width_1_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra_true_both_holes
-  - oobb_hole_shape_negative_type_m6_radius_name_14_depth_-29.5_-37.5_7.0_pos_all_typ_all_save_type_true_navigation_false_overwrite_'3dpr'_modes_oobb_oomp_mode_true_oomp_run_4_width_4_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra_perimeter_holes_0_90_0_rot
-  - oobb_hole_shape_negative_type_m6_radius_name_14_depth_-29.5_37.5_7.0_pos_all_typ_all_save_type_true_navigation_false_overwrite_'3dpr'_modes_oobb_oomp_mode_true_oomp_run_4_width_4_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra_perimeter_holes_0_90_0_rot
+  - oobb_plate_shape_positive_type_14_depth_22.5_0_0_pos_none_save_type_true_navigation_true_overwrite_'3dpr'_modes_oobb_oomp_mode_false_oomp_run_1_width_4_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra
+  - oobb_holes_shape_p_type_14_depth_22.5_0_0_pos_none_save_type_true_navigation_true_overwrite_'3dpr'_modes_oobb_oomp_mode_false_oomp_run_1_width_4_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra_true_both_holes
+  - oobb_plate_shape_positive_type_14_depth_-22.5_0_0_pos_none_save_type_true_navigation_true_overwrite_'3dpr'_modes_oobb_oomp_mode_false_oomp_run_1_width_6_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra
+  - oobb_holes_shape_p_type_14_depth_-22.5_0_0_pos_none_save_type_true_navigation_true_overwrite_'3dpr'_modes_oobb_oomp_mode_false_oomp_run_1_width_4_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra_true_both_holes
+  - oobb_plate_shape_positive_type_14_depth_0_-22.5_0_pos_none_save_type_true_navigation_true_overwrite_'3dpr'_modes_oobb_oomp_mode_false_oomp_run_4_width_1_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra
+  - oobb_holes_shape_p_type_14_depth_0_-22.5_0_pos_none_save_type_true_navigation_true_overwrite_'3dpr'_modes_oobb_oomp_mode_false_oomp_run_4_width_1_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra_true_both_holes
+  - oobb_hole_shape_negative_type_m6_radius_name_14_depth_-29.5_-37.5_7.0_pos_none_save_type_true_navigation_true_overwrite_'3dpr'_modes_oobb_oomp_mode_false_oomp_run_4_width_4_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra_perimeter_holes_0_90_0_rot
+  - oobb_hole_shape_negative_type_m6_radius_name_14_depth_-29.5_37.5_7.0_pos_none_save_type_true_navigation_true_overwrite_'3dpr'_modes_oobb_oomp_mode_false_oomp_run_4_width_4_height_14_thickness_oobb_oomp_classification_part_oomp_type_plate_screw_down_u_oomp_size_m6_bolt_screw_radius__m6_bolt_extra_perimeter_holes_0_90_0_rot
   description: oomlout oobb part plate u screw down plate screw down u 4x4x14
   description_extra: _m6_bolt_extra
   description_main: 4_width_4_height_14_mm_depth
   extra: _m6_bolt
-  folder: C:\gh\oomlout_oobb_version_4_generated_parts\parts\oobb_part_oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u_4_width_4_height_14_mm_depth__m6_bolt_extra
   height: 4
   height_mm: 59
   id: oobb_part_oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u_4_width_4_height_14_mm_depth__m6_bolt_extra
   link_main: https://github.com/oomlout/oomlout_oobb_version_4_generated_parts/tree/main/navigation_oomp/oobb/part/oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u/4_width_4_height_14_mm_depth/_m6_bolt_extra/part
   link_redirect: https://github.com/oomlout/oomlout_oobb_version_4_generated_parts/tree/main/parts/oobb_oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u_04_04_14_ex__m6_bolt
   manufacturer: ''
-  name: Oobb Part Oomlout Oobb Part Plate U Screw Down Plate Screw Down U 4 Width
-    4 Height 14 mm Depth  M6 Bolt Extra
   name_short: Oomlout Plate U Screw Down Plate Screw
+  name_text: Oobb Part Oomlout Oobb Part Plate U Screw Down Plate Screw Down U 4 Width
+    4 Height 14 mm Depth  M6 Bolt Extra
   part_number: ''
   short_name: ''
   size: oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u

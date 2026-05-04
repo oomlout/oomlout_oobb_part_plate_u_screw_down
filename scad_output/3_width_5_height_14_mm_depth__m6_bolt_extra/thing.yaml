@@ -957,12 +957,12 @@ thing:
       height: 5
       inclusion: laser
       m: '#'
-      pos: &id001
+      pos:
       - -22.0
       - -45.0
       - 7.0
       r: 3.0
-      rot: &id002
+      rot:
       - 0
       - 90
       - 0
@@ -975,9 +975,15 @@ thing:
       height: 5
       inclusion: 3dpr
       m: '#'
-      pos: *id001
+      pos:
+      - -22.0
+      - -45.0
+      - 7.0
       r: 3.25
-      rot: *id002
+      rot:
+      - 0
+      - 90
+      - 0
       shape: cylinder
       type: negative
       width: 3
@@ -987,9 +993,15 @@ thing:
       height: 5
       inclusion: 'true'
       m: '#'
-      pos: *id001
+      pos:
+      - -22.0
+      - -45.0
+      - 7.0
       r: 3.0
-      rot: *id002
+      rot:
+      - 0
+      - 90
+      - 0
       shape: cylinder
       type: negative
       width: 3
@@ -999,12 +1011,12 @@ thing:
       height: 5
       inclusion: laser
       m: '#'
-      pos: &id003
+      pos:
       - -22.0
       - 45.0
       - 7.0
       r: 3.0
-      rot: &id004
+      rot:
       - 0
       - 90
       - 0
@@ -1017,9 +1029,15 @@ thing:
       height: 5
       inclusion: 3dpr
       m: '#'
-      pos: *id003
+      pos:
+      - -22.0
+      - 45.0
+      - 7.0
       r: 3.25
-      rot: *id004
+      rot:
+      - 0
+      - 90
+      - 0
       shape: cylinder
       type: negative
       width: 3
@@ -1029,9 +1047,15 @@ thing:
       height: 5
       inclusion: 'true'
       m: '#'
-      pos: *id003
+      pos:
+      - -22.0
+      - 45.0
+      - 7.0
       r: 3.0
-      rot: *id004
+      rot:
+      - 0
+      - 90
+      - 0
       shape: cylinder
       type: negative
       width: 3
@@ -1306,16 +1330,15 @@ thing:
   description_extra: _m6_bolt_extra
   description_main: 3_width_5_height_14_mm_depth
   extra: _m6_bolt
-  folder: C:\gh\oomlout_oobb_version_4_generated_parts\parts\oobb_part_oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u_3_width_5_height_14_mm_depth__m6_bolt_extra
   height: 5
   height_mm: 74
   id: oobb_part_oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u_3_width_5_height_14_mm_depth__m6_bolt_extra
   link_main: https://github.com/oomlout/oomlout_oobb_version_4_generated_parts/tree/main/navigation_oomp/oobb/part/oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u/3_width_5_height_14_mm_depth/_m6_bolt_extra/part
   link_redirect: https://github.com/oomlout/oomlout_oobb_version_4_generated_parts/tree/main/parts/oobb_oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u_03_05_14_ex__m6_bolt
   manufacturer: ''
-  name: Oobb Part Oomlout Oobb Part Plate U Screw Down Plate Screw Down U 3 Width
-    5 Height 14 mm Depth  M6 Bolt Extra
   name_short: Oomlout Plate U Screw Down Plate Screw
+  name_text: Oobb Part Oomlout Oobb Part Plate U Screw Down Plate Screw Down U 3 Width
+    5 Height 14 mm Depth  M6 Bolt Extra
   part_number: ''
   short_name: ''
   size: oomlout_oobb_part_plate_u_screw_down_plate_screw_down_u
